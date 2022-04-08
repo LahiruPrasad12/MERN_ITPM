@@ -21,7 +21,7 @@ export default function SendFeedback() {
     const [ratePerHour, setratePerHour] = useState("");
     const [workingDay, setworkingDay] = useState("");
     const [otRate, setotRate] = useState("");
-    const [total, settotal] = useState("");
+    const [total, settotal] = useState(0);
 
     const [state, setState] = useState(true);
 
@@ -158,7 +158,7 @@ export default function SendFeedback() {
                                 </div>
                                 <div class="">
                                     <button type="button" onClick={(e) => { calAmount(e) }} class="btn btn-dark" style={{ marginLeft: "130px", marginTop: "30px", marginBottom: "10px" }}>Calculate Amount</button><br></br>
-                                    <h3 style={{ marginLeft: '155px', marginTop: '20px' }}>RS.{total}</h3>
+                                    <h3 style={{ marginLeft: '155px', marginTop: '20px' }}>RS. {total}</h3>
                                 </div>
 
                             </form>

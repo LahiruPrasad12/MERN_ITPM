@@ -4,13 +4,13 @@ const Employee = require("../../models/employee-manager/employeeModel");
 //Add new vehicle
 router.post('/',async(req,res)=>{
     try{
-        const {fName,lName,birthDay,gender,mail,materialStatus,Department,TypeofEmployee} = req.body;
+        // const {fName,lName,birthDay,gender,mail,materialStatus,Department,TypeofEmployee} = req.body;
        
-        const newEmployee = new Employee({
-            fName,lName,birthDay,gender,mail,materialStatus,Department,TypeofEmployee
-        });
+        // const newEmployee = new Employee({
+        //     fName,lName,birthDay,gender,mail,materialStatus,Department,TypeofEmployee
+        // });
 
-        const savedEmployee = await newEmployee.save();
+        const savedEmployee = await Employee.create(req.body);
         res.status(200).send({data : savedEmployee});
 
     }catch(err){

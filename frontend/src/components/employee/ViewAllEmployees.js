@@ -33,7 +33,7 @@ export default function ViewServiceDetails() {
                 console.log(err.message)
             }
         }
-       
+
         getDetails();
     })
 
@@ -47,14 +47,14 @@ export default function ViewServiceDetails() {
                     || items.mail.toLowerCase().includes(search.toLowerCase())
             })
         )
-       
+
     }, [search, AllEmployees])
 
 
     //This function used to generate a pdf
     function generatePDF(tickets) {
         const doc = new jspdf();
-        const tableColumn = ["First Name", "Last Name", "Mail Address","Department","Type of Employee"];
+        const tableColumn = ["Employee ID", "First Name", "Last Name", "Mail Address", "Department", "Type of Employee"];
         const tableRows = [];
 
         tickets.slice(0).reverse().map(ticket => {
@@ -63,7 +63,8 @@ export default function ViewServiceDetails() {
                 ticket.lName,
                 ticket.mail,
                 ticket.Department,
-                ticket.TypeofEmployee
+                ticket.TypeofEmployee,
+                ticket.empID
             ];
             tableRows.push(ticketData);
         });
@@ -82,7 +83,7 @@ export default function ViewServiceDetails() {
         <div class="content">
 
             <div class="d-flex justify-content-center" >
-                <div class="spinner-border" role="status" style={{width: "10rem", height: "10rem",  marginTop:"100px"}} hidden={loaderStatus}>
+                <div class="spinner-border" role="status" style={{ width: "10rem", height: "10rem", marginTop: "100px" }} hidden={loaderStatus}>
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
@@ -103,6 +104,7 @@ export default function ViewServiceDetails() {
                     <table className="table table-dark table-hover">
                         <thead>
                             <tr>
+                                <th scope="col">Employee ID</th>
                                 <th scope="col">First Name</th>
                                 <th scope="col">Last Name</th>
                                 <th scope="col">Mail Address</th>
@@ -115,6 +117,7 @@ export default function ViewServiceDetails() {
 
                             {filtered.slice(0).reverse().map((Employee) => {
                                 return <tr>
+                                    <td>{Employee.empID}</td>
                                     <td>{Employee.fName}</td>
                                     <td> {Employee.lName} </td>
                                     <td>{Employee.mail}</td>

@@ -17,13 +17,14 @@ export default function AddEmployee() {
     const [mail, setmail] = useState("");
     const [materialStatus, setmaterialStatus] = useState("");
     const [Department, setDepartment] = useState("");
+    const [empID, setempID] = useState("");
     const [TypeofEmployee, setTypeofEmployee] = useState("");
 
-   async function submitData(e) {
-    setLoading(true)
+    async function submitData(e) {
+        setLoading(true)
         try {
             e.preventDefault();
-            if (!fName || !lName || !birthDay || !gender || !mail || !materialStatus || !Department || !TypeofEmployee) {
+            if (!fName || !lName || !birthDay || !gender || !mail || !materialStatus || !Department || !TypeofEmployee || !empID) {
                 SoloAlert.alert({
                     title: "Oops!",
                     body: "Please fill all fields",
@@ -47,10 +48,10 @@ export default function AddEmployee() {
                 });
             } else {
                 const newDetails = {
-                    fName,lName,birthDay,gender,mail,materialStatus,Department,TypeofEmployee
+                    fName, lName, birthDay, gender, mail, materialStatus, Department, TypeofEmployee,empID
                 }
                 const data = await (await axios.post("http://localhost:5000/employee/", newDetails)).status
-                if(data === 200){
+                if (data === 200) {
                     SoloAlert.alert({
                         title: "Welcome!",
                         body: "Data added successfully",
@@ -58,7 +59,7 @@ export default function AddEmployee() {
                         theme: "dark",
                         useTransparency: true,
                         onOk: function () {
-    
+
                         },
                     });
                 }
@@ -78,16 +79,23 @@ export default function AddEmployee() {
             <h3>ADD-EMPLOYEE-DETAILS</h3><hr />
 
             <form class="row g-3 needs-validation" id="inputForm2" novalidate>
-                <div class="col-md-6 position-relative">
+                <div class="col-md-4 position-relative">
                     <label for="validationTooltip01" class="form-label">First name</label>
                     <input type="text" class="form-control" id="validationTooltip01" required
                         onChange={(e) => { setfName(e.target.value) }} />
                 </div>
-                <div class="col-md-5 position-relative">
+                <div class="col-md-4 position-relative">
                     <label for="validationTooltip02" class="form-label">Last name</label>
                     <input type="text" class="form-control" id="validationTooltip02" required
                         onChange={(e) => { setlName(e.target.value) }} />
-                </div><br />
+                </div>
+                <div class="col-md-3 position-relative">
+                    <label for="validationTooltip01" class="form-label">Employee ID</label>
+                    <input type="text" class="form-control" id="validationTooltip01" required
+                        onChange={(e) => { setempID(e.target.value) }} />
+                </div>
+
+                <br />
                 <div class="col-md-5 position-relative">
                     <label for="validationTooltip03" class="form-label">Mail Address</label>
                     <input type="text" class="form-control" id="validationTooltip03" required

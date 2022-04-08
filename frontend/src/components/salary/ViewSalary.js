@@ -38,6 +38,7 @@ export default function ViewSalary() {
 
     //This useEffect method is used to perform a searching function
     useEffect(() => {
+        console.log(allSalary)
         setfiltered(
             allSalary.filter(items => {
                 return items.mail.toLowerCase().includes(search.toLowerCase())
@@ -50,12 +51,12 @@ export default function ViewSalary() {
     //This function used to generate a pdf
     function generatePDF(tickets) {
         const doc = new jspdf();
-        const tableColumn = ["User Mail", "Hour rate", "Work hour(per day)","Worked day","OT Rate","OT Hour","Monthly Salary"];
+        const tableColumn = ["Emplyee ID", "Hour rate", "Work hour(per day)","Worked day","OT Rate","OT Hour","Monthly Salary"];
         const tableRows = [];
 
         tickets.slice(0).reverse().map(ticket => {
             const ticketData = [
-                ticket.mail,
+                ticket.empID,
                 ticket.ratePerHour,
                 ticket.workedHour,
                 ticket.workingDay,
@@ -102,7 +103,7 @@ export default function ViewSalary() {
                     <table className="table table-white table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">User Mail Address</th>
+                                <th scope="col">Employee ID</th>
                                 <th scope="col">Hour rate</th>
                                 <th scope="col">Work hour(per day)</th>
                                 <th scope="col">Worked day</th>

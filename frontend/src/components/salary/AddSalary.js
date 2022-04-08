@@ -52,7 +52,7 @@ export default function SendFeedback() {
         setfiltered(
             AllEmployees.filter(items => {
                 return items.fName.toLowerCase().includes(search.toLowerCase())
-                    || items.lName.toLowerCase().includes(search.toLowerCase())
+                    || items.empID.toLowerCase().includes(search.toLowerCase())
                     || items.mail.toLowerCase().includes(search.toLowerCase())
             })
         )
@@ -61,7 +61,7 @@ export default function SendFeedback() {
 
 
     function selectUser(employee) {
-        setmail(employee.mail);
+        setmail(employee.empID);
     }
 
     async function addAttendant(e) {
@@ -189,6 +189,7 @@ export default function SendFeedback() {
                     <table className="table table-white table-hover">
                         <thead>
                             <tr>
+                                <th scope="col">Employee ID</th>
                                 <th scope="col">First Name</th>
                                 <th scope="col">Last Name</th>
                                 <th scope="col">Mail Address</th>
@@ -201,6 +202,7 @@ export default function SendFeedback() {
 
                             {filtered.slice(0).reverse().map((Employee) => {
                                 return <tr>
+                                    <td>{Employee.empID}</td>
                                     <td>{Employee.fName}</td>
                                     <td> {Employee.lName} </td>
                                     <td>{Employee.mail}</td>
